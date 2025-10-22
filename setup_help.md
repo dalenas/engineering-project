@@ -3,8 +3,10 @@
 
 2. make sure you have git, python updated too
 
-3. run this from the repository terminal
+3. run this from the repository directory
+
 '''
+source env/bin/activate
 pip install -r requirements.txt
 '''
 
