@@ -1,0 +1,25 @@
+# Raspberry Pi Set Up
+
+1. Get the Raspberry Pi OS (64-bit)
+
+```bash
+sudo raspi-config
+# Interface Options → enable Camera
+# Interface Options → enable I2C
+# System Options → set locale/timezone
+sudo reboot
+```
+
+3. make sure you have python updated with the libaries we will likely use
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3-pip python3-venv python3-opencv \
+    libatlas-base-dev libjpeg-dev libtiff5 libopenjp2-7 \
+    i2c-tools git
+```
+
+'pip install opencv-python-headless' if 'python-opencv' doesn't work
+
+---
+
