@@ -10,7 +10,7 @@ sudo raspi-config
 sudo reboot
 ```
 
-3. make sure you have python updated with the libaries we will likely use
+2. make sure you have python updated with the libaries we will likely use
 
 ```bash
 sudo apt-get update
@@ -23,3 +23,4 @@ sudo apt-get install -y python3-pip python3-venv python3-opencv \
 
 ---
 
+3. make sure you guys clone the repository to your own computer lol
