@@ -1,13 +1,19 @@
 # Engineering Project - Foundation Mixture Creator
+## Before PM4
+1. set up environment
+2. pick skin color database and figure out how we will define the pigment matching table
+3. discover tools needed (OpenCV)
+4. develop detailed pseudocode
+
+---
 
 ## Software Requirements (Abridged)
-1. Pi Camera → capture frame (locked exposure/WB if you can).
-2. OpenCV → face detection → skin mask → robust skin color (median).
+1. Pi Camera → capture frame 
+2. OpenCV → face detection → skin mask → robust skin color
 3. Convert to Lab → compare with skin shade DB in Lab.
-4. k-NN (k=3 or 5) → pick closest brand shade + compute ΔE
-5. Map that shade to real pigment recipe (a small lookup table you define).
+4. k-NN (k=3 or 5) → pick closest shade from pigment mapping table
 6. Convert pigment volumes → servo turns → push syringes via leadscrews.
-7. Show on-screen: target shade, chosen shade, ΔE, and per-pigment ratios
+7. Show on-screen: target shade, chosen shade, other options for shades (cooler tone/warmer tone. this is optional though)
 
 ### Open-source skin-shade / Lab
 
@@ -33,7 +39,7 @@
 
    ```
    name, L, A, B, Blue_ratio, Yellow_ratio, Red_ratio...
-   Medium-Tan, 55.1, 10.2, 14.3, 0.30, 0.40, 0.30...
+   Medium-Tan, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0...
    ```
 4. At runtime:
    * Use your k-NN to pick the closest anchor shade.
