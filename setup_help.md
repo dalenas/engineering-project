@@ -1,17 +1,38 @@
 # your personal computer
-1. make sure you guys clone the repository to your own computer lol
+1. make sure you have git, python updated too
 
-2. make sure you have git, python updated too
+2. run this from the repository directory
 
-3. run this from the repository directory
+3. make a folder for the repository
 
-'''
+```
+cd ~
+mkdir engineering-project && cd engineering-project
+```
+
+- cd ~ goes back to root directory
+- mkdir creates a folder with whatever is following as the name of the folder
+
+4. initialize git and set up all the files/ability to push edits remotely
+
+```
+git init
+git clone https://github.com/dalenas/engineering-project
+```
+
+5. set up virtual environment
+
+```
+python3 -m venv env
 source env/bin/activate
+```
+
+6. download packages
+
+```
 pip install -r requirements.txt
-'''
+```
 
-
-'pip install opencv-python-headless' if 'python-opencv' doesn't work
 # Raspberry Pi
 ## Set Up: Downloads
 
