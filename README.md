@@ -5,6 +5,7 @@
 3. discover tools needed (OpenCV)
 4. develop detailed pseudocode
 
+
 ---
 
 ## Software Requirements (Abridged)
