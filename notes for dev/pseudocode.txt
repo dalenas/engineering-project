@@ -20,22 +20,22 @@ BEGIN IMAGE_PROCESSING
         RAISE ERROR "Image does not contain control set. Retake picture with printout."
     ENDIF
 
-    # 2. take rgb code of skin & the reference colors
+    # take rgb code of skin & the reference colors
 
     rgb_skin_raw = AVG_RGB(sample_picture, skin)
     rgb_control_reading = AVG_RGB(sample_picture, control)
 
-    # 3. find difference in the read reference vs the known values on the sheet
+    # find difference in the read reference vs the known values on the sheet
 
     rgb_control_known = LOAD_REFERENCE('control_table.csv')
     delta_E = CALCULATE_DIFFERENCE(rgb_control_known, rgb_control_reading)
     ccm_matrix = GENERATE_CCM(delta_E)
 
-    # 4. apply difference to the values found in the skin region for lighting correction
+    # apply difference to the values found in the skin region for lighting correction
 
     rgb_skin_corrected = APPLY_CCM(ccm_matrix, rgb_skin_raw)
 
-    # 5. convert rgb value to lab for later processing
+    # convert rgb value to lab for later processing
 
     LAB_values = CONVERT_RGB_LAB(rgb_skin_corrected)
 
