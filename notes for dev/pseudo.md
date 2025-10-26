@@ -45,6 +45,7 @@ def IMAGE_PROCESSING(SAMPLE_PICTURE) :
 
     return LAB_VALUES
 
+
 def DETECT_SKIN_REGION(sample_picture) -> np.ndarray 
     
 
@@ -73,5 +74,9 @@ def CONVERT_RGB_LAB(rgb_skin_corrected) -> list
     # Utilizes a linear transformation that converts rgb to LAB
     # openCV has a function that does this
 
+
+```
+# 2 : Raspberry Pi Code
+```python
 
 ```
