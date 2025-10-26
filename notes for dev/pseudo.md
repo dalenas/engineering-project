@@ -1,34 +1,32 @@
 # 1: Color Bias Adjustment and Sampling
 ```python
-def IMAGE_PROCESSING(sample_picture) :
-    #INPUT: sample_picture - image captured by camera
+def IMAGE_PROCESSING(SAMPLE_PICTURE) :
+    #INPUT: SAMPLE_PICTURE - image captured by camera
     #OUTPUT: LAB_values - color values compatible with paint mixing
 
     ### Get/Validate image containing skin region 
     ### & reference colors/control sheet
 
-    if sample_picture is EMPTY/NOT_DETECTED :
+    if SAMPLE_PICTURE is EMPTY/NOT_DETECTED :
         RAISE_ERROR "Image captured failed or canceled"
         return NULL
 
-    SKIN_SAMPLE = list of pixel values that constitute a skin region
-        ### INPUT: sample_picture
-    CONTROL_SAMPLE = list of pixels that encompass the reference color sheet
-        ### INPUT: sample_picture
+    SKIN_SAMPLE = list of pixel values that constitute a skin region from SAMPLE_PICTURE
+    CONTROL_SAMPLE = list of pixels that encompass the reference color sheet SAMPLE_PICTURE
 
-    if control is EMPTY/NOT_DETECTED :
+    if CONTROL_SAMPLE or SKIN_SAMPLE is EMPTY/NOT_DETECTED :
         RAISE_ERROR "Image does not contain control set. Retake picture with printout."
         return NULL
     
 
     # take rgb code of skin & the reference colors
 
-    RGB_SKIN_RAW = calculated average of SKIN_SAMPLE
-    CONTROL_MEASURED_VALUES = calculated average of CONTROL_SAMPLE
+    RGB_SKIN_RAW = calculate average of SKIN_SAMPLE
+    CONTROL_MEASURED_VALUES = calculate average of CONTROL_SAMPLE
 
     # find difference in the read reference vs the known values on the sheet
 
-    CONTROL_KNOWN_VALUES = load "CONTROL_DATABASE.csv"
+    CONTROL_KNOWN_VALUES = load("CONTROL_DATABASE.csv")
     DIFFERENCE = calculate offset between CONTROL_MEASURED_VALUES and CONTROL_KNOWN_VALUES
     CCM_MATRIX = generate color correction matrix with DIFFERENCE
 
