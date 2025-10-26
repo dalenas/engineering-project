@@ -11,18 +11,28 @@ def IMAGE_PROCESSING(SAMPLE_PICTURE) :
         RAISE_ERROR "Image captured failed or canceled"
         return NULL
 
+    # initial samples contain gamma-corrected RGB values
+    # use OpenCV region of interest rectangle
+
     SKIN_SAMPLE = list of pixel values that constitute a skin region from SAMPLE_PICTURE
     CONTROL_SAMPLE = list of pixels that encompass the reference color sheet SAMPLE_PICTURE
 
-    if CONTROL_SAMPLE or SKIN_SAMPLE is EMPTY/NOT_DETECTED :
-        RAISE_ERROR "Image does not contain control set. Retake picture with printout."
+    # check whether the reference sheet is present or the image is too dark/light
+
+    if CONTROL_SAMPLE is EMPTY/NOT_DETECTED :
+        RAISE_ERROR "Contol sheet not detected. Take picture with color reference sheet in a well-lit room."
         return NULL
+
+    # get average gamma-corrected RGB codes for the skin region and control
+
+    SKIN_RGB_AVG = calculate average of SKIN_SAMPLE
+    CONTROL_MEASURED_VALUES = list of averages of CONTROL_SAMPLE
     
+    # get linear RGB codes from gamma-corrected codes
+    # allows linear operations to be performed on the codes
 
-    # take rgb code of skin & the reference colors
-
-    RGB_SKIN_RAW = calculate average of SKIN_SAMPLE
-    CONTROL_MEASURED_VALUES = calculate average of CONTROL_SAMPLE
+    LINEAR_RGB_SKIN = apply reverse gamma-correction to SKIN_GAMMA_RGB
+    LINEAR_RGB_
 
     # find difference in the read reference vs the known values on the sheet
 
@@ -32,7 +42,7 @@ def IMAGE_PROCESSING(SAMPLE_PICTURE) :
 
     # apply difference to the values found in the skin region for lighting correction
 
-    RGB_SKIN_CORRECTED = apply CCM_MATRIX to RGB_SKIN_RAW
+    XYZ = apply CCM_MATRIX to LINEAR_RGB_SKIN
 
     # convert rgb value to lab for later processing
 
@@ -74,9 +84,5 @@ def CONVERT_RGB_LAB(rgb_skin_corrected) -> list
     # Utilizes a linear transformation that converts rgb to LAB
     # openCV has a function that does this
 
-
-```
-# 2 : Raspberry Pi Code
-```python
 
 ```
