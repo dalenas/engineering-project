@@ -14,8 +14,8 @@ def IMAGE_PROCESSING(SAMPLE_PICTURE) :
     # initial samples contain gamma-corrected RGB values
     # use OpenCV region of interest rectangle
 
-    SKIN_SAMPLE = list of pixel values that constitute a skin region from SAMPLE_PICTURE
-    CONTROL_SAMPLE = list of pixels that encompass the reference color sheet SAMPLE_PICTURE
+    SKIN_SAMPLE = list of pixel RGB values that constitute a skin region from SAMPLE_PICTURE
+    CONTROL_SAMPLE = list of pixel RGB values that encompass the reference color sheet SAMPLE_PICTURE
 
     # check whether the reference sheet is present or the image is too dark/light
 
@@ -28,25 +28,24 @@ def IMAGE_PROCESSING(SAMPLE_PICTURE) :
     SKIN_RGB_AVG = calculate average of SKIN_SAMPLE
     CONTROL_MEASURED_VALUES = list of averages of CONTROL_SAMPLE
     
-    # get linear RGB codes from gamma-corrected codes
+    # get linear RGB codes from gamma-corrected RGB codes
     # allows linear operations to be performed on the codes
 
-    LINEAR_RGB_SKIN = apply reverse gamma-correction to SKIN_GAMMA_RGB
-    LINEAR_RGB_
+    SKIN_LINEAR_RGB = apply reverse gamma-correction to SKIN_RGB_AVG
+    CONTROL_LINEAR_RGB = list of linearized RGB codes from CONTROL_MEASURED_VALUES
 
-    # find difference in the read reference vs the known values on the sheet
+    # find difference in the control input RGB codes and stored RGB codes
 
-    CONTROL_KNOWN_VALUES = load("CONTROL_DATABASE.csv")
-    DIFFERENCE = calculate offset between CONTROL_MEASURED_VALUES and CONTROL_KNOWN_VALUES
-    CCM_MATRIX = generate color correction matrix with DIFFERENCE
+    CONTROL_KNOWN_VALUES = load("CONTROL_DATABASE.csv") and linearize the codes
+    CONTROL_TRANSFORM = find transformation matrix that makes CONTROL_LINEAR_RGB = CONTROL_KNOWN_VALUES * CONTROL_TRANSFORM
 
     # apply difference to the values found in the skin region for lighting correction
 
-    XYZ = apply CCM_MATRIX to LINEAR_RGB_SKIN
+    XYZ = apply CONTROL_TRANFORM to SKIN_LINEAR_RGB
 
     # convert rgb value to lab for later processing
 
-    LAB_VALUES = convert RGB_SKIN_CORRECTED to LAB(XYZ)
+    LAB_VALUES = convert XYZ color space to LAB(XYZ)
 
     for element in LAB_VALUES :
         if element is OUT_OF_RANGE :
