@@ -1,1 +1,1 @@
-this is just here so the folders can show up
+# This is intended to be an event handler that helps communicate between UI and backend
