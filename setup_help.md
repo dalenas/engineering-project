@@ -11,20 +11,24 @@ mkdir engineering-project && cd engineering-project
 ```
 
 - cd ~ goes back to root directory
-- mkdir creates a folder with whatever is following as the name of the folder
 
 4. initialize git and set up all the files/ability to push edits remotely
 
 ```
-git init
 git clone https://github.com/dalenas/engineering-project
+git init
 ```
 
 5. set up virtual environment
-
+MAC OS
 ```
 python3 -m venv env
 source env/bin/activate
+```
+WINDOWS
+```
+py -m venv env
+.\env\Scripts\Activate.ps1
 ```
 
 6. download packages
