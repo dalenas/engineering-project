@@ -14,6 +14,11 @@
 - push/pull once you've finished coding for the day or you need to switch collaborators
 
 ## current branches and their uses
+You may add a new branch with this command but be sure to update README.md with what the branch is for. Or communicate it to one of the Software Team and we can do it for you. 
+```bash
+git checkout -b new_branch_name
+```
+
 ### backend development
 **feature/image-processing** related to image processing algorithms that gamma correct and adjust for inconsistent lighting
 **feature/region-of-interest** related to image capture and defining skin/reference card regions
